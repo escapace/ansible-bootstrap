@@ -1,0 +1,13 @@
+---
+
+- name: bootstrap autorelabel
+  file:
+    path: /.autorelabel
+    owner: root
+    group: root
+    state: touch
+
+- name: bootstrap reboot needed
+  reboot:
+    post_reboot_delay: "{{ bootstrap_reboot_delay | default(100) }}"
+  when: provider != "vagrant"

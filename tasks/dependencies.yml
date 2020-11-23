@@ -1,0 +1,29 @@
+- name: install common dependencies
+  yum:
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+  vars:
+    packages:
+     - jq
+     - gcc
+     - python3-pip
+     - libffi-devel
+     - openssl-devel
+     - python3
+     - python3-devel
+     - yum-utils
+
+- name: uninstall unnecessary packages
+  yum:
+    name: "{{ packages }}"
+    state: absent
+  vars:
+    packages:
+     - cockpit
+
+- name: clean up yum.
+  command: >
+    yum clean all
+    warn=false
+  changed_when: false
