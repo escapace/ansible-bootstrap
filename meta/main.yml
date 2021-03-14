@@ -2,7 +2,7 @@ galaxy_info:
   role_name: bootstrap
   description: bootstrap role
   issue_tracker_url: https://github.com/escapace/ansible-bootstrap/issues
-  author: Escapace
+  author: escapace
   license: Apache-2.0
   min_ansible_version: 2.10
   github_branch: trunk
