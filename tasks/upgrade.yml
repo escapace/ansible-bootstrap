@@ -4,6 +4,7 @@
   yum:
     name: kernel
     state: latest
+  when: provider is not defined or (provider is defined and provider != "ec2")
   notify:
   - bootstrap reboot needed
 
