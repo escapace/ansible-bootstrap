@@ -1,5 +1,5 @@
 - name: install common dependencies
-  yum:
+  ansible.builtin.yum:
     name: "{{ packages }}"
     state: present
     update_cache: yes
@@ -15,7 +15,7 @@
      - yum-utils
 
 - name: uninstall unnecessary packages
-  yum:
+  ansible.builtin.yum:
     name: "{{ packages }}"
     state: absent
   vars:
@@ -23,7 +23,5 @@
      - cockpit
 
 - name: clean up yum.
-  command: >
-    yum clean all
-    warn=false
+  ansible.builtin.command: yum clean all
   changed_when: false
