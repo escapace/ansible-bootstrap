@@ -1,7 +1,7 @@
 ---
 
 - name: upgrade kernel package
-  yum:
+  ansible.builtin.dnf:
     name: kernel
     state: latest
   when: provider is not defined or (provider is defined and provider != "ec2")
@@ -9,7 +9,7 @@
   - bootstrap reboot needed
 
 - name: upgrade all packages
-  yum:
+  ansible.builtin.dnf:
     name: "*"
     state: latest
     exclude: kernel

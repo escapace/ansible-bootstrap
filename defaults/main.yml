@@ -1,3 +1,4 @@
 ---
 
 bootstrap_reboot_delay: 100
+bootstrap_selinux_state: enforcing

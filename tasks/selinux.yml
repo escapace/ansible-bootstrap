@@ -1,7 +1,7 @@
 ---
 
 - name: install selinux dependencies
-  yum:
+  ansible.builtin.dnf:
     name: "{{ packages }}"
     state: present
   vars:
@@ -15,16 +15,16 @@
       - python3-libselinux
 
 - name: enforce selinux
-  selinux:
+  ansible.posix.selinux:
     policy: targeted
-    state: enforcing
+    state: "{{ bootstrap_selinux_state }}"
   notify:
   - bootstrap autorelabel
   - bootstrap reboot needed
 
 - name: enforce selinux
-  copy:
-    src: files/selinux_config
+  ansible.builtin.copy:
+    src: templates/selinux_config
     dest: /etc/selinux/config
     owner: root
     group: root
@@ -35,7 +35,7 @@
     selevel: s0
 
 - name: symlink /etc/sysconfig/selinux
-  file:
+  ansible.builtin.file:
     force: yes
     state: link
     src: /etc/selinux/config
