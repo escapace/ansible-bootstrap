@@ -23,7 +23,7 @@
   - bootstrap reboot needed
 
 - name: enforce selinux
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: templates/selinux_config
     dest: /etc/selinux/config
     owner: root
