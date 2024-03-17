@@ -1,5 +1,4 @@
 ---
-
 - name: install selinux dependencies
   ansible.builtin.dnf:
     name: "{{ packages }}"
@@ -19,8 +18,8 @@
     policy: targeted
     state: "{{ bootstrap_selinux_state }}"
   notify:
-  - bootstrap autorelabel
-  - bootstrap reboot needed
+    - bootstrap autorelabel
+    - bootstrap reboot needed
 
 - name: enforce selinux
   ansible.builtin.template:
@@ -28,7 +27,7 @@
     dest: /etc/selinux/config
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
     seuser: system_u
     serole: object_r
     setype: selinux_config_t
@@ -36,13 +35,13 @@
 
 - name: symlink /etc/sysconfig/selinux
   ansible.builtin.file:
-    force: yes
+    force: true
     state: link
     src: /etc/selinux/config
     dest: /etc/sysconfig/selinux
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
     seuser: system_u
     serole: object_r
     setype: selinux_config_t

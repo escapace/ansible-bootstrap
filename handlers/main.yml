@@ -1,13 +1,13 @@
 ---
-
 - name: bootstrap autorelabel
-  file:
+  ansible.builtin.file:
     path: /.autorelabel
     owner: root
     group: root
     state: touch
+    mode: "0755"
 
 - name: bootstrap reboot needed
-  reboot:
+  ansible.builtin.reboot:
     post_reboot_delay: "{{ bootstrap_reboot_delay | default(100) }}"
   when: provider != "vagrant"

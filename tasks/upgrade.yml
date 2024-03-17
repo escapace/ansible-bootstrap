@@ -1,12 +1,11 @@
 ---
-
 - name: upgrade kernel package
   ansible.builtin.dnf:
     name: kernel
     state: latest
   when: provider is not defined or (provider is defined and provider != "ec2")
   notify:
-  - bootstrap reboot needed
+    - bootstrap reboot needed
 
 - name: upgrade all packages
   ansible.builtin.dnf:

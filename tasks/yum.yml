@@ -1,7 +1,6 @@
 ---
-
 - name: increase yum timeouts
-  ansible.builtin.shell: "yum-config-manager --save --setopt {{ item.option }}={{ item.value }}"
+  ansible.builtin.shell: yum-config-manager --save --setopt {{ item.option }}={{ item.value }}
   changed_when: false
   with_items:
     - option: timeout

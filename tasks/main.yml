@@ -1,5 +1,4 @@
 ---
-
 - ansible.builtin.include_tasks: dependencies.yml
 - ansible.builtin.include_tasks: yum.yml
 - ansible.builtin.include_tasks: selinux.yml
@@ -13,20 +12,20 @@
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: ensure that postfix is disabled
   ansible.builtin.service:
     name: postfix
     enabled: false
     state: stopped
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: ensure that kdump is disabled
   ansible.builtin.service:
     name: kdump
     enabled: false
     state: stopped
-  ignore_errors: yes
+  ignore_errors: true
 
 - ansible.builtin.meta: flush_handlers
